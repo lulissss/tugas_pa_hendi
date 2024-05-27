@@ -1,112 +1,149 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <title>INPUT DATA KE SPREAD SHEET</title>
+    <title>INPUT DATA KE SPREADSHEET</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
         body {
-            background-color: #0c0a0a;
+            padding: 2em 0;
+            font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 15px;
+            color: #212121;
+            background-color: #FAFAFA;
         }
 
-        #form-container {
-            width: 500px;
-            margin: 0 auto;
-            background-color: #f1f1f7;
-            border: 2px solid #da0808;
-            border-radius: 10px;
-            padding: 20px;
+        h4 {
+            color: #00796B;
         }
 
-        #form-container h2 {
-            text-align: center;
-            color: #1E90FF;
+        .container {
+            max-width: 50em;
+            padding: 2em;
+            margin: auto;
+            background-color: #FFFFFF;
+            border-radius: 8px;
+            box-shadow: 0px 3px 10px -2px rgba(0, 0, 0, 0.2);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5em;
         }
 
-        #form-container input[type="text"],
-        #form-container input[type="date"],
-        #form-container input[type="tel"],
-        #form-container input[type="number"],
-        #form-container select,
-        #form-container textarea {
-            width: 90%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 2px solid #f1d0d0;
-            border-radius: 5px;
+        .bg-primary {
+            background-color: #00796B !important;
         }
 
-        #form-container input[type="submit"] {
-            background-color: #1E90FF;
-            color: #FFFFFF;
+        .bg-secondary {
+            background-color: #FFC107 !important;
+        }
+
+        .btn-primary, .btn-secondary {
+            background-color: #00796B !important;
             border: none;
+        }
+
+        .btn-secondary {
+            background-color: #FFC107 !important;
+            border: none;
+            color: #212121;
+        }
+
+        .inputfile {
+            display: none;
+        }
+
+        .inputfile + label {
+            color: white;
+            background-color: #FF5722;
+            padding: 7px 20px;
             border-radius: 5px;
-            padding: 10px;
             cursor: pointer;
-        }
-
-        #form-container input[type="submit"]:hover {
-            background-color: #004B8D;
-        }
-
-        #footer {
+            width: 100%; 
             text-align: center;
-            margin-top: 30px;
-            font-size: 12px;
-            color: #f7f1f1;
+        } 
+
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1em;
+        }
+
+        .form-group {
+            flex: 1;
+            min-width: calc(50% - 1em);
         }
     </style>
 </head>
-
 <body>
-    <div id="form-container">
-        <h2>INPUT DATA KE SPREADSHEET</h2>
-        <form action="https://script.google.com/macros/s/AKfycbxkakHcjnXaCWZjcDk2djFkw3JEUH1y3IjbJw94kqpAapV6xyHDGYVGy5aT2DT13Fjw/exec"
-            method="post" enctype="multipart/form-data">
-
-            <label for="nama">Nama Kegiatan:</label>
-            <input type="text" id="nama" name="nama" required>
-            <br></br>
-
-            <label for="jenis">Pilih Jenis Kegiatan:</label>
-            <select name="jenis" id="jenis" required>
-                <option></option>
-                <option value="kbm">KBM </option>
-                <option value="nonkbm">Non KBM</option>
-            </select>
-            <br><br>
-
-            <label for="tgl_kgt">Tanggal kegiatan:</label>
-            <input type="date" id="tgl_kgt" name="tgl_kgt" required>
-            <br>
-
-            <label for="uraian">Uraian Kegiatan:</label>
-            <br>
-            <textarea cols="60" rows="10" type="text" id="uraian" name="uraian" required></textarea>
-            <br><br>
-
-            <label for="target">Target Capaian:</label>
-            <textarea cols="60" rows="10" type="text" id="target" name="target" required></textarea>
-            <br><br>
-
-            <label for="buktis">Bukti Kegiatan:</label>
-            <input type="file" name="buktis" id="buktis" accept="image/*" capture>
-            <input type="hidden" id="buktisEnc" name="buktisEnc">
-            <script>
-                document.getElementById('buktis').addEventListener('change', function (event) {
-                    var file = event.target.files[0];
-                    var reader = new FileReader();
-                    reader.onloadend = function () {
-                        document.getElementById('buktisEnc').value = reader.result.split(',')[1];
-                    }
-                    reader.readAsDataURL(file);
-                });
-            </script>
-            <br><br>
-
-            <input type="submit" value="Simpan Data">
-        </form>
+    <div class="container bg-primary text-white pt-5 pb-5">
+        <div class="container bg-secondary p-4 rounded">
+            <form action="https://script.google.com/macros/s/AKfycbwCHQunxN6FPkyZrxTbXJoF2qSKQgSRqqIRcLPq_yIGjIVq8vTHlk3ab4gPG6Y3tHxdXw/exec" method="post" enctype="multipart/form-data">
+                <h4 class="mb-4 text-center fw-medium">LAPORAN KINERJA</h4>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="no" class="form-label">Nomor NIK/NIP</label>
+                        <input class="form-control" type="number" id="no" name="no" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nama" class="form-label">Nama Kegiatan:</label>
+                        <input class="form-control" type="text" id="nama_kegiatan" name="nama" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="jenis" class="form-label">Pilih Jenis Kegiatan:</label>
+                        <select name="jenis_kegiatan" class="form-control" required>
+                            <option></option>
+                            <option value="kbm">KBM</option>
+                            <option value="nonkbm">Non KBM</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="tgl_kgt" class="form-label">Tanggal kegiatan:</label>
+                        <input type="date" id="tgl_kgt" name="datePicker" class="form-control" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="uraian" class="form-label">Uraian Kegiatan:</label>
+                        <textarea cols="30" rows="5" id="uraian" name="uraian_kegiatan" class="form-control" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="target" class="form-label">Target Capaian:</label>
+                        <textarea cols="30" rows="5" id="target" name="target_capaian" class="form-control" required></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="buktis" class="form-label">Bukti Kegiatan:</label>
+                    <div class="d-grid gap-2 d-md-block">
+                        <input type="file" name="image_activity" id="buktis" class="inputfile form-control" />
+                        <label for="buktis" class="fs-6">Choose A File</label>
+                        <input type="hidden" id="buktisEnc" name="buktisEnc">
+                    </div>
+                </div>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <input type="submit" value="Simpan Data" class="btn btn-primary">
+                </div>
+            </form>
+        </div>
     </div>
-</body>
 
+    <script>
+        document.getElementById("buktis").addEventListener("change", function (event) {
+            var file = event.target.files[0];
+            var reader = new FileReader();
+            reader.onloadend = function () {
+                document.getElementById("buktisEnc").value = reader.result.split(",")[1];
+            };
+            reader.readAsDataURL(file);
+        });
+        
+        document.getElementById("kameraButton").addEventListener("click", function () {
+            document.getElementById("buktis").click();
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
 </html>
